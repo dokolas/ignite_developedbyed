@@ -3,16 +3,20 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 //REDUX SETUP
-import { createStore }  from 'redux';
+//APPLY MIDDLEWARE and COMPOSE - LETS YOU IMPORT THUNK WITHIN CREATE STORE
+import { createStore, applyMiddleware, compose }  from 'redux';
 //add root reducer for store
 import rootReducer from './reducers/index';
 //connects redux to react
 import { Provider } from 'react-redux';
+//thunk
+import thunk from 'redux-thunk';
+
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 //setup store, only can pass one reducer, so you have to combine them all, don't forget to add devtools
 const store = createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  rootReducer, composeEnhancer(applyMiddleware(thunk))
   );
 
 ReactDOM.render(

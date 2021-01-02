@@ -1,4 +1,6 @@
 
+
+
 // setting initial state for reducer
 const initState = {
     popular: [],
@@ -14,6 +16,13 @@ const gamesReducer = (state=initState, action) => {
         default:
             return {...state}
     }
-}
+};
+
+const fetchGames = (userData) => {
+    return {
+        type: 'FETCH_GAMES',
+        payload: userData,
+    };
+};
 
 export default gamesReducer;
