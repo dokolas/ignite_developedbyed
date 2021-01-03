@@ -1,6 +1,3 @@
-
-
-
 // setting initial state for reducer
 const initState = {
     popular: [],
@@ -9,20 +6,19 @@ const initState = {
     search: []
 }
 
-const gamesReducer = (state=initState, action) => {
+const gamesReducer = (state = initState, action) => {
     switch(action.type) {
         case 'FETCH_GAMES':
-            return {...state}
+            //returned payload because in action, we are configuring a payload, must be here too
+            return {
+                ...state,
+                popular: action.payload.popular,
+                upcoming: action.payload.upcoming,
+                newGames: action.payload.newGames,
+            };
         default:
             return {...state}
     }
-};
-
-const fetchGames = (userData) => {
-    return {
-        type: 'FETCH_GAMES',
-        payload: userData,
-    };
 };
 
 export default gamesReducer;
