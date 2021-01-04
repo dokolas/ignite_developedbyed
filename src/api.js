@@ -38,7 +38,13 @@ const upcoming_games = `games?dates=${currentDate},${nextYear}&ordering=-added&p
 const new_games = `games?dates=${lastYear},${currentDate}&ordering=-released&page_size=10`;
 
 
+
+
 //URL to fetch from
 export const popularGamesUrl = () => `${base_url}${popular_games}`;
 export const upcomingGamesUrl = () => `${base_url}${upcoming_games}`;
 export const newGamesUrl = () => `${base_url}${new_games}`;
+
+//GAMEDETAILS
+export const gameDetailsUrl = (game_id) => `${base_url}games/${game_id}`; //PASSED IN THE GAME ID as a paramater - then used it in line
+export const gameScreenshotUrl = (game_id) => `${base_url}games/${game_id}/screenshots`;
