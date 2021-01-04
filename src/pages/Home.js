@@ -32,7 +32,31 @@ export const Home = () => {
                             image={game.background_image} 
                             key={game.id}
                         />
-                    ))};
+                    ))}
+                </Games>
+                <h2>Popular Games</h2> 
+                <Games>
+                    {popular.map(game => (
+                        <Game //DONT FORGET TO PASS PROPS HERE TO USE IN GAMES OR WITHIN APP
+                            name={game.name} 
+                            releaseDate={game.released} 
+                            id={game.id} 
+                            image={game.background_image} 
+                            key={game.id}
+                        />
+                    ))}
+                </Games>
+                <h2>New Games</h2> 
+                <Games>
+                    {newGames.map(game => (
+                        <Game //DONT FORGET TO PASS PROPS HERE TO USE IN GAMES OR WITHIN APP
+                            name={game.name} 
+                            releaseDate={game.released} 
+                            id={game.id} 
+                            image={game.background_image} 
+                            key={game.id}
+                        />
+                    ))}
                 </Games>
         </GameList>
     )
