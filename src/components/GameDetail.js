@@ -4,13 +4,27 @@ import styled from 'styled-components';
 import {motion} from 'framer-motion';
 //Redux
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom'; //allows you to push new path
 
 const GameDetail = () => {
+    //exit the game detail
+    const history = useHistory();
+
+    const exitDetailHandler = (e) => {
+        const element = e.target;
+        if (element.classList.contains('shadow')){
+            document.body.style.overflow = 'auto';
+            history.push('/');  //sets the URL back to the /
+        }
+    }
+
+
+    //data
     const { screen, game, isLoading } = useSelector(state => state.detail); //the beginning looks at the detail action/reducer because of the state.detail
     return (
         <>
         {!isLoading && ( //WHEN ISLOADING IS NOT TRUE - IT LOADS THE CARD DETAIL BELOW
-            <CardShadow>
+            <CardShadow className='shadow' onClick={exitDetailHandler}>
                 <Detail>
                     <Stats>
                         <div className = 'rating'>

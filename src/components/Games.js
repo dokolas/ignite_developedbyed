@@ -13,6 +13,7 @@ const Game = ({name, releaseDate, image, id }) => { //ON THIS LINE BE SURE TO PA
     const dispatch = useDispatch();
 
     const loadDetailHandler = () => {
+        document.body.style.overflow = 'hidden';  //hides second scrollbar
         dispatch(loadDetail(id));
     }
 
@@ -41,6 +42,7 @@ const StyledGame = styled(motion.div)`
     }
     text-align: center;
     border-radius: 1rem;
+    overflow: hidden; //rounds corners
 `;
 
 export default Game;
