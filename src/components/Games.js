@@ -5,6 +5,8 @@ import {motion} from 'framer-motion';
 //redux
 import { useDispatch } from 'react-redux';
 import { loadDetail } from '../actions/detailAction';
+//react router
+import { Link } from 'react-router-dom';
 
 const Game = ({name, releaseDate, image, id }) => { //ON THIS LINE BE SURE TO PASS PROPS LIKE NAME/RELEASEDATE/ETC
     //load details
@@ -20,9 +22,11 @@ const Game = ({name, releaseDate, image, id }) => { //ON THIS LINE BE SURE TO PA
         //     <p>Released Date</p>
         // </div>
         <StyledGame onClick={loadDetailHandler}> 
-            <h3>{name}</h3>
-            <p>{releaseDate}</p>
-            <img src={image} alt={name} />
+            <Link to={`/game/${id}`}>
+                <h3>{name}</h3>
+                <p>{releaseDate}</p>
+                <img src={image} alt={name} />
+            </Link>
         </StyledGame>
     )
 }

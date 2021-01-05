@@ -11,6 +11,8 @@ import rootReducer from './reducers/index';
 import { Provider } from 'react-redux';
 //thunk
 import thunk from 'redux-thunk';
+//react router
+import { BrowserRouter } from 'react-router-dom';
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -23,7 +25,9 @@ ReactDOM.render(
   <React.StrictMode>
     {/* Set Provider to pass all the reducers to the whole app */}
     <Provider store={store}>
-      <App /> 
+      <BrowserRouter>
+        <App /> 
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

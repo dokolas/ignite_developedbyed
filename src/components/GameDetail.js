@@ -6,38 +6,42 @@ import {motion} from 'framer-motion';
 import { useSelector } from 'react-redux';
 
 const GameDetail = () => {
-    const { screen, game } = useSelector(state => state.detail);
+    const { screen, game, isLoading } = useSelector(state => state.detail); //the beginning looks at the detail action/reducer because of the state.detail
     return (
-        <CardShadow>
-            <Detail>
-                <Stats>
-                    <div className = 'rating'>
-                        <h3>{game.name}</h3>
-                        <p>Rating: {game.rating}</p>
+        <>
+        {!isLoading && ( //WHEN ISLOADING IS NOT TRUE - IT LOADS THE CARD DETAIL BELOW
+            <CardShadow>
+                <Detail>
+                    <Stats>
+                        <div className = 'rating'>
+                            <h3>{game.name}</h3>
+                            <p>Rating: {game.rating}</p>
+                        </div>
+                        <Info>
+                            <h3>Platforms: </h3>
+                            <Platforms>
+                                {game.platforms.map(data => (
+                                    <h4 key={data.platform.id}>{data.platform.name}</h4>
+                                ))}
+                            </Platforms>
+                        </Info>
+                    </Stats>
+                
+                    <Media>
+                        <img src={game.background_image} alt="image" />
+                    </Media>
+                    <Description>
+                        <p>{game.description_raw}</p>
+                    </Description>
+                    <div className='gallery'>
+                        {/* {screen.results.map(screen => (
+                            <img src={screen.image} key={screen.id} alt='image' />
+                        ))} */}
                     </div>
-                    <Info>
-                        <h3>Platforms: </h3>
-                        <Platforms>
-                            {game.platforms.map(data => (
-                                <h3 key={data.platform.id}>{data.platform.name}</h3>
-                            ))}
-                        </Platforms>
-                    </Info>
-                </Stats>
-              
-                <Media>
-                    <img src={game.background_image} alt="image" />
-                </Media>
-                <Description>
-                    <p>{game.description_raw}</p>
-                </Description>
-                <div className='gallery'>
-                    {/* {screen.results.map(screen => (
-                        <img src={screen.image} key={screen.id} alt='image' />
-                    ))} */}
-                </div>
-            </Detail>  
-        </CardShadow>
+                </Detail>  
+            </CardShadow>
+        )}
+        </>
     )
 }
 
@@ -105,7 +109,7 @@ const Description = styled(motion.div)`
 `;
 
 const Ratings = styled(motion.div)`
-    
+
 `;
 
 export default GameDetail;

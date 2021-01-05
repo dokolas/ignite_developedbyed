@@ -8,8 +8,15 @@ import GameDetail from '../components/GameDetail';
 //styles and motion
 import styled from 'styled-components';
 import {motion} from 'framer-motion';
+//react router
+import { useLocation } from 'react-router-dom';
+
 
 export const Home = () => {
+    //get the current location
+    const location = useLocation();
+    const pathId = location.pathname.split('/')[2];  //splits pathname by the /, then the [2] gets the 3rd item (the id)
+
     //FETCH GAMES
     const dispatch = useDispatch();
 
@@ -23,7 +30,8 @@ export const Home = () => {
 
     return(
         <GameList>
-            <GameDetail />
+            {/* If PathID exists above (doesn't exist on homepage because of the [2] then show game detail) */}
+            {pathId && <GameDetail />} 
             <h2>Upcoming Games</h2> 
                 <Games>
                     {upcoming.map(game => (
@@ -77,4 +85,5 @@ const Games = styled(motion.div)`
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     grid-column-gap: 3rem;
     grid-row-gap: 5rem;
+    cursor: pointer;
 `;
