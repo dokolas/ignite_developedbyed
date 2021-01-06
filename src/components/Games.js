@@ -7,26 +7,30 @@ import { useDispatch } from 'react-redux';
 import { loadDetail } from '../actions/detailAction';
 //react router
 import { Link } from 'react-router-dom';
+//import image resize component
+import { smallImage } from '../util';
 
 const Game = ({name, releaseDate, image, id }) => { //ON THIS LINE BE SURE TO PASS PROPS LIKE NAME/RELEASEDATE/ETC
+    const stringPathId = id.toString();
     //load details
     const dispatch = useDispatch();
 
     const loadDetailHandler = () => {
         document.body.style.overflow = 'hidden';  //hides second scrollbar
         dispatch(loadDetail(id));
+        console.log(typeof id)
     }
 
     return (
-        // <div>
+        // <div> LEFT THIS HERE AS IT WAS THE PRECURSOR TO LIVE DATA
         //     <h3>Game Name</h3>
         //     <p>Released Date</p>
         // </div>
-        <StyledGame onClick={loadDetailHandler}> 
+        <StyledGame layoutId={stringPathId} onClick={loadDetailHandler}> 
             <Link to={`/game/${id}`}>
                 <h3>{name}</h3>
                 <p>{releaseDate}</p>
-                <img src={image} alt={name} />
+                <motion.img layoutId={`image ${stringPathId}`} src={smallImage(image,640)} alt={name} />
             </Link>
         </StyledGame>
     )
@@ -37,7 +41,7 @@ const StyledGame = styled(motion.div)`
     box-shadow: 0px 5px 30px rgba(0,0,0,0.2); 
     img{
         width:100%;
-        height: 40vh;
+        height: 60vh;
         object-fit: cover;
     }
     text-align: center;
