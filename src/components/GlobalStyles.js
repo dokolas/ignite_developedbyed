@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 //DevByEd always adds these first two styles below
 const GlobalStyles = createGlobalStyle`
@@ -46,6 +46,10 @@ const GlobalStyles = createGlobalStyle`
     
     img{
         display: block;
+
+    input{
+        font-family: 'Noto Sans', sans-serif;
+        font-weight: bold;
     }
 
 `;

@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 //components and pages
-import { Home } from './pages/Home';
-import GlobalStyles from './components/GlobalStyles';
+import { Home } from "./pages/Home";
+import Nav from "./components/Nav";
 //react router
-import { Route } from 'react-router-dom';
+import { Route } from "react-router-dom";
+//styles
+import GlobalStyles from "./components/GlobalStyles";
 
 function App() {
-
   return (
     <div className="App">
       <GlobalStyles />
-      <Route path={['/games/:id/', '/']}>
+      <Nav />
+      <Route path={["/games/:id/", "/"]}>
         <Home />
       </Route>
     </div>
