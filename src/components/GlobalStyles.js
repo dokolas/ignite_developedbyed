@@ -46,7 +46,8 @@ const GlobalStyles = createGlobalStyle`
     
     img{
         display: block;
-
+    }
+    
     input{
         font-family: 'Noto Sans', sans-serif;
         font-weight: bold;

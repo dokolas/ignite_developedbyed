@@ -25,16 +25,36 @@ export const Home = () => {
   }, [dispatch]); // ONLY RUNS WHEN DISPATCH HAPPENS
 
   //GET THE DATA BACK FROM THE ABOVE FETCH/STATE
-  const { popular, upcoming, newGames } = useSelector((state) => state.games);
+  const { popular, upcoming, newGames, searched } = useSelector(
+    (state) => state.games
+  );
 
   return (
     <GameList>
       {/* If PathID exists above (doesn't exist on homepage because of the [2] then show game detail) */}
-      <AnimateSharedLayout type='crossfade'>
+      <AnimateSharedLayout type="crossfade">
         <AnimatePresence>
           {/* Important to have a toggle on and off with animate presence */}
-          {pathId && <GameDetail pathId = {pathId} />}
+          {pathId && <GameDetail pathId={pathId} />}
         </AnimatePresence>
+        {searched.length ? (
+          <div className="searched">
+            <h2>Searched Games</h2>
+            <Games>
+              {searched.map((game) => (
+                <Game //DONT FORGET TO PASS PROPS HERE TO USE IN GAMES OR WITHIN APP
+                  name={game.name}
+                  releaseDate={game.released}
+                  id={game.id}
+                  image={game.background_image}
+                  key={game.id}
+                />
+              ))}
+            </Games>
+          </div>
+        ) : (
+          "" //this line item renders the '' with ? on line 40.  so if the length is 0, render ''
+        )}
         <h2>Upcoming Games</h2>
         <Games>
           {upcoming.map((game) => (
